@@ -1,30 +1,52 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+  <DrawerRoot should-scale-background>
+    <DrawerTrigger
+      class="rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+    >
+      Open Drawer
+    </DrawerTrigger>
+    <DrawerPortal>
+      <DrawerOverlay class="fixed bg-black/40 inset-0" />
+      <DrawerContent
+        class="bg-gray-100 flex flex-col rounded-t-[10px] h-full mt-24 max-h-[96%] fixed bottom-0 left-0 right-0"
+      >
+        <div class="p-4 bg-white rounded-t-[10px] flex-1">
+          <DrawerHandle data-testid="handle" class="mb-8 mt-2" />
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+          <div class="max-w-md mx-auto">
+            <h2 id="radix-:R3emdaH1:" class="font-medium mb-4">
+              Drawer for Vue.
+              <input :style="{'border': '1px solid black'}"/>
+          <textarea :style="{'border': '1px solid black'}"/>
+            </h2>
+            <p class="text-gray-600 mb-2">
+              This component can be used as a Dialog replacement on mobile and tablet devices.
+            </p>
+            <p class="text-gray-600 mb-2">
+              It comes unstyled, has gesture-driven animations, and is made by
+              <a href="https://emilkowal.ski/" class="underline" target="_blank">Emil Kowalski</a>.
+            </p>
+            <p class="text-gray-600 mb-8">
+              It uses
+              <a
+                href="https://www.radix-ui.com/docs/primitives/components/dialog"
+                class="underline"
+                target="_blank"
+              >Radix's Dialog primitive</a>
+              under the hood and is inspired by
+              <a
+                href="https://twitter.com/devongovett/status/1674470185783402496"
+                class="underline"
+                target="_blank"
+              >this tweet.</a>
+            </p>
+          </div>
+        </div>
+      </DrawerContent>
+    </DrawerPortal>
+  </DrawerRoot>
+</template>
